@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyTipCalculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="buttonCompute">Calculate Tip</string>
+    <string name="checkAmountValue">Check Amount</string>
+    <string name="partySizeValue">Party Size</string>
+    <string name="fifteenPercentTipValue">15%</string>
+    <string name="twentyPercentTipValue">20%</string>
+    <string name="twentyfivePercentTipValue">25%</string>
+    <string name="fifteenPercentTotalValue">15%</string>
+    <string name="twentyPercentTotalValue">20%</string>
+    <string name="twentyfivePercentTotalValue">25%</string>
+    <string name="tipValue">Tip:</string>
+    <string name="TotalValue">Total:</string>
+
+</resources>
