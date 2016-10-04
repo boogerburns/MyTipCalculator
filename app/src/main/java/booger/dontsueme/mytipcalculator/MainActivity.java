@@ -1,17 +1,13 @@
 package booger.dontsueme.mytipcalculator;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.sql.Array;
+import android.text.InputType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,17 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         Button calculateButton = (Button) findViewById(R.id.calculateButton);
         calculateButton.setOnClickListener(new Button.OnClickListener() {
@@ -49,29 +34,50 @@ public class MainActivity extends AppCompatActivity {
                 TextView twentyfiveTipOutput = (TextView) findViewById(R.id.twentyfiveOutTipText);
                 TextView twentyfiveTotalOutput = (TextView) findViewById(R.id.twentyfiveOutTotalText);
 
+
                 //Text views for getting user input
                 TextView amount = (TextView) findViewById(R.id.billAmountUser);
                 TextView party = (TextView) findViewById(R.id.partySizeUser);
 
-                //Parse user input
-                double amountUser = Double.parseDouble(amount.getText().toString());
-                double partyUser = Double.parseDouble(party.getText().toString());
 
-                //Calculate stuff
-                for(int i=0;i<3;i++){
-                    tipAmountPerPerson[i]=((tipArray[i]* amountUser)/partyUser);
-                }
-                for(int i=0;i<3;i++){
-                    tipAmountTotal[i]=((tipArray[i]* amountUser)+amountUser)/partyUser;
-                }
 
-                //Write the calculated amounts to the output views
-                fifteenTipOutput.setText(Double.toString(tipAmountPerPerson[0]));
-                fifteenTotalOutput.setText(Double.toString(tipAmountTotal[0]));
-                twentyTipOutput.setText(Double.toString(tipAmountPerPerson[1]));
-                twentyTotalOutput.setText(Double.toString(tipAmountTotal[1]));
-                twentyfiveTipOutput.setText(Double.toString(tipAmountPerPerson[2]));
-                twentyfiveTotalOutput.setText(Double.toString(tipAmountTotal[2]));
+                //Need to check if User Input is empty
+                if(!amount.getText().toString().isEmpty()  && !party.getText().toString().isEmpty())
+                {
+
+                    //Parse user input
+                    double amountUser = Double.parseDouble(amount.getText().toString());
+                    double partyUser = Double.parseDouble(party.getText().toString());
+                    //Calculate stuff
+
+                    for (int i = 0; i < 3; i++) {
+                        tipAmountPerPerson[i] = ((tipArray[i] * amountUser) / partyUser);
+                    }
+                    for (int i = 0; i < 3; i++) {
+                        tipAmountTotal[i] = ((tipArray[i] * amountUser) + amountUser) / partyUser;
+                    }
+
+                    //Write the calculated amounts to the output views
+                    fifteenTipOutput.setText(Double.toString(tipAmountPerPerson[0]));
+                    fifteenTotalOutput.setText(Double.toString(tipAmountTotal[0]));
+                    twentyTipOutput.setText(Double.toString(tipAmountPerPerson[1]));
+                    twentyTotalOutput.setText(Double.toString(tipAmountTotal[1]));
+                    twentyfiveTipOutput.setText(Double.toString(tipAmountPerPerson[2]));
+                    twentyfiveTotalOutput.setText(Double.toString(tipAmountTotal[2]));
+
+                }
+                else
+                {
+                    //Do something if the User input is blank
+                    fifteenTipOutput.setText("0");
+                    fifteenTotalOutput.setText("0");
+                    twentyTipOutput.setText("0");
+                    twentyTotalOutput.setText("0");
+                    twentyfiveTipOutput.setText("0");
+                    twentyfiveTotalOutput.setText("0");
+                    amount.setText("0");
+                    party.setText("0");
+                }
             }
 
         });
